@@ -39,8 +39,6 @@ namespace Lifesiml
             this.label1 = new System.Windows.Forms.Label();
             this.screen = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.screen1 = new System.Windows.Forms.PictureBox();
-            this.screen2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -48,8 +46,6 @@ namespace Lifesiml
             ((System.ComponentModel.ISupportInitialize)(this.setDens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.setRes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen2)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -72,8 +68,6 @@ namespace Lifesiml
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.screen2);
-            this.splitContainer1.Panel2.Controls.Add(this.screen1);
             this.splitContainer1.Panel2.Controls.Add(this.screen);
             this.splitContainer1.Size = new System.Drawing.Size(1136, 651);
             this.splitContainer1.SplitterDistance = 378;
@@ -155,32 +149,18 @@ namespace Lifesiml
             // 
             // screen
             // 
-            this.screen.Location = new System.Drawing.Point(-7, -2);
+            this.screen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.screen.Location = new System.Drawing.Point(0, 0);
             this.screen.Name = "screen";
-            this.screen.Size = new System.Drawing.Size(382, 406);
+            this.screen.Size = new System.Drawing.Size(750, 647);
             this.screen.TabIndex = 0;
             this.screen.TabStop = false;
+            this.screen.MouseMove += new System.Windows.Forms.MouseEventHandler(this.screen_MouseMove);
             // 
             // timer1
             // 
             this.timer1.Interval = 35;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // screen1
-            // 
-            this.screen1.Location = new System.Drawing.Point(381, -2);
-            this.screen1.Name = "screen1";
-            this.screen1.Size = new System.Drawing.Size(371, 406);
-            this.screen1.TabIndex = 1;
-            this.screen1.TabStop = false;
-            // 
-            // screen2
-            // 
-            this.screen2.Location = new System.Drawing.Point(3, 410);
-            this.screen2.Name = "screen2";
-            this.screen2.Size = new System.Drawing.Size(744, 227);
-            this.screen2.TabIndex = 2;
-            this.screen2.TabStop = false;
             // 
             // Form1
             // 
@@ -189,7 +169,7 @@ namespace Lifesiml
             this.ClientSize = new System.Drawing.Size(1136, 651);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Projekt 2";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -198,8 +178,6 @@ namespace Lifesiml
             ((System.ComponentModel.ISupportInitialize)(this.setDens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.setRes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -215,8 +193,6 @@ namespace Lifesiml
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button runButton;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox screen1;
-        private System.Windows.Forms.PictureBox screen2;
     }
 }
 

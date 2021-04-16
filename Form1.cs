@@ -13,7 +13,7 @@ namespace Lifesiml
 {
     public partial class Form1 : Form
     {
-      
+
         public Form1()
         {
             InitializeComponent();
@@ -22,15 +22,13 @@ namespace Lifesiml
         private bool[,] space; private int row, col;
         private Graphics gdi;
         Random random = new Random();
-        PictureBox current;
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            GenerateNew(screen);
-            GenerateNew(screen1);
-            GenerateNew(screen2);
+            GenerateNew();
         }
-        public void RunGame(PictureBox screen)
+        public void RunGame()
         {
             if (timer1.Enabled)
             {
@@ -56,30 +54,30 @@ namespace Lifesiml
 
         private void StopGame()
         {
-         if (timer1.Enabled)
+            if (timer1.Enabled)
                 timer1.Stop();
             if (timer1.Enabled == false)
                 return;
         }
 
-        private void GenerateNew(PictureBox screen)
+        private void GenerateNew()
         {
             var newArr = new bool[col, row];
             gdi.Clear(Color.Black);
             for (int i = 1; i < col; i++)
             {
-                
+
                 for (int j = 1; j < row; j++)
                 {
                     var CellNumber = GetCells(i, j);
                     if (!space[i, j] && CellNumber == 3)
                         newArr[i, j] = true;
-                    else if(space[i,j] &&  (CellNumber < 2 || CellNumber > 3))
+                    else if (space[i, j] && (CellNumber < 2 || CellNumber > 3))
                         newArr[i, j] = false;
                     else
-                        newArr[i, j] = space[i,j];
+                        newArr[i, j] = space[i, j];
 
-                    if (space[i,j])
+                    if (space[i, j])
                         gdi.FillRectangle(Brushes.Cyan, i * res, j * res, res, res);
                 }
             }
@@ -88,36 +86,67 @@ namespace Lifesiml
             space = newArr;
             screen.Refresh();
         }
-        private int GetCells(int x,int y)
+        private int GetCells(int x, int y)
         {
             int count = 0;
-            for(int i = -1; i<2;i++)
+            for (int i = -1; i < 2; i++)
             {
-                for(int j = -1;j<2;j++)
+                for (int j = -1; j < 2; j++)
                 {
-                    var cols = (x + i + col)% col ;
-                    var rows = (y + j+  row) % row ;
+                    var cols = (x + i + col) % col;
+                    var rows = (y + j + row) % row;
                     var check = cols == x && rows == y;
-                   // space[i, j] = space[cols, rows];
+                    // space[i, j] = space[cols, rows];
                     var Alive = space[cols, rows];
-                    if(Alive && !check)
+                    if (Alive && !check)
                     {
                         count++;
                     }
                 }
-               
+
             }
             return count;
         }
 
+
         private void runButton_Click(object sender, EventArgs e)
         {
-            RunGame(screen1); RunGame(screen1); RunGame(screen2);
+            RunGame();
         }
 
+        private void screen_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!timer1.Enabled)
+                return; ;
+        
+            if(e.Button == MouseButtons.Left)
+                {
+                var x = e.Location.X / res;
+                var y = e.Location.Y / res;
+                var isOK = isOnScreen(x, y);
+                if(isOK)
+                    space[x, y] = true;
+            }
+            if(e.Button == MouseButtons.Right)
+            {
+                var x = e.Location.X / res;
+                var y = e.Location.Y / res;
+                var isOK = isOnScreen(x, y);
+                if (isOK)
+                    space[x, y] = false;
+            }
+         
+           
+        }
+
+        bool isOnScreen(int x, int y)
+        {
+            return x >= 0 && y >= 0 && x < col && y < row;
+        }
         private void stopButton_Click(object sender, EventArgs e)
         {
             StopGame();
+            setRes.Enabled = true; setDens.Enabled = true;
         }
     }
 }
