@@ -9,6 +9,8 @@ namespace Lifesiml.Logic
     class Core
     {
         private bool[,] space; private readonly int row, col;
+        public ulong borns;
+        public ulong deaths;
         Random random = new Random();
         public ushort Gen { get; private set; }
         public Core(int row,int col,int intensivity)
@@ -37,9 +39,16 @@ namespace Lifesiml.Logic
                 {
                     var CellNumber = GetCells(i, j);
                     if (!space[i, j] && CellNumber == 3)
+                    {
                         newArr[i, j] = true;
+                        borns++;
+                    }
                     else if (space[i, j] && (CellNumber < 2 || CellNumber > 3))
+                    {
+
                         newArr[i, j] = false;
+                        deaths++;
+                    }
                     else
                         newArr[i, j] = space[i, j];
 

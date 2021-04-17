@@ -79,7 +79,9 @@ namespace Lifesiml
 
                 if (this.InvokeRequired)
                 {
-                    this.Invoke(new MethodInvoker(delegate { Text = $"Gen № : {core.Gen}"; }));
+                    this.Invoke(new MethodInvoker(delegate { Text = $"Gen № : {core.Gen}"; genLabel.Text = $"Gen № : {core.Gen}";
+                    Died.Text = $"Died :" + core.deaths.ToString(); Borned.Text = $"Borned :"+ core.borns.ToString(); }));
+
                 }
 
                 core.GenerateNew();

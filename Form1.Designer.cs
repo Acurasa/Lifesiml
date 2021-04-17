@@ -29,7 +29,11 @@ namespace Lifesiml
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.Died = new System.Windows.Forms.Label();
+            this.Borned = new System.Windows.Forms.Label();
+            this.genLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Speed1 = new System.Windows.Forms.NumericUpDown();
             this.stopButton = new System.Windows.Forms.Button();
@@ -60,6 +64,10 @@ namespace Lifesiml
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackgroundImage = global::Lifesiml.Properties.Resources.photo_2021_02_11_19_16_41;
+            this.splitContainer1.Panel1.Controls.Add(this.Died);
+            this.splitContainer1.Panel1.Controls.Add(this.Borned);
+            this.splitContainer1.Panel1.Controls.Add(this.genLabel);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.Speed1);
             this.splitContainer1.Panel1.Controls.Add(this.stopButton);
@@ -75,6 +83,33 @@ namespace Lifesiml
             this.splitContainer1.Size = new System.Drawing.Size(1136, 651);
             this.splitContainer1.SplitterDistance = 378;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // Died
+            // 
+            this.Died.BackColor = System.Drawing.Color.White;
+            this.Died.Location = new System.Drawing.Point(27, 431);
+            this.Died.Name = "Died";
+            this.Died.Size = new System.Drawing.Size(216, 16);
+            this.Died.TabIndex = 10;
+            this.Died.Text = "Died :";
+            // 
+            // Borned
+            // 
+            this.Borned.BackColor = System.Drawing.Color.White;
+            this.Borned.Location = new System.Drawing.Point(27, 395);
+            this.Borned.Name = "Borned";
+            this.Borned.Size = new System.Drawing.Size(216, 16);
+            this.Borned.TabIndex = 9;
+            this.Borned.Text = "Borned : ";
+            // 
+            // genLabel
+            // 
+            this.genLabel.BackColor = System.Drawing.Color.White;
+            this.genLabel.Location = new System.Drawing.Point(28, 363);
+            this.genLabel.Name = "genLabel";
+            this.genLabel.Size = new System.Drawing.Size(216, 16);
+            this.genLabel.TabIndex = 8;
+            this.genLabel.Text = "Generation № : ";
             // 
             // label3
             // 
@@ -99,7 +134,7 @@ namespace Lifesiml
             this.Speed1.Size = new System.Drawing.Size(120, 20);
             this.Speed1.TabIndex = 6;
             this.Speed1.Value = new decimal(new int[] {
-            1,
+            10,
             0,
             0,
             0});
@@ -193,9 +228,13 @@ namespace Lifesiml
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1136, 651);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
+            this.Opacity = 0.98D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Projekt 2";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -223,6 +262,9 @@ namespace Lifesiml
         private System.Windows.Forms.Button runButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown Speed1;
+        private System.Windows.Forms.Label genLabel;
+        private System.Windows.Forms.Label Died;
+        private System.Windows.Forms.Label Borned;
     }
 }
 
