@@ -22,6 +22,7 @@ namespace Lifesiml
         private ushort res;
         private Core core;
         private Graphics gdi;
+        private bool pause = true;
        
 
 
@@ -31,7 +32,7 @@ namespace Lifesiml
         }
         public void RunGame()
         {
-            if (timer1.Enabled)
+            if (pause == false)
             {
                 return;
             }
@@ -44,41 +45,45 @@ namespace Lifesiml
             screen.Image = new Bitmap(screen.Height, screen.Width);
             gdi = Graphics.FromImage(screen.Image);
             //gdi.FillRectangle(Brushes.Cyan, 0, 0, res, res);
-            timer1.Start();
+            pause = false;
+            Task.Factory.StartNew(DrawNew);
         }
 
         private void StopGame()
         {
-            if (timer1.Enabled)
-                timer1.Stop();
-            if (timer1.Enabled == false)
-                return;
+            pause = true;
         }
 
         private void DrawNew()
         {
-            
-            gdi.Clear(Color.Black);
-            var space = core.GetCurrentAge();
-            for (int x = 0;x < space.GetLength(0); x++)
+            while (true)
             {
-                for (int y = 0; y < space.GetLength(1); y++)
+                if (pause) return;
+                Thread.Sleep(10);
+                gdi.Clear(Color.Black);
+                var space = core.GetCurrentAge();
+                for (int x = 0; x < space.GetLength(0); x++)
                 {
-                    if(space[x,y])
-                        gdi.FillRectangle(Brushes.Cyan, x * res, y * res, res - 1, res - 1);
-                    
-                }
-            }
-            
-            
-            
-            
-            //
-            //
+                    for (int y = 0; y < space.GetLength(1); y++)
+                    {
+                        if (space[x, y])
+                            gdi.FillRectangle(Brushes.Cyan, x * res, y * res, res - 1, res - 1);
 
-            screen.Refresh();
-            Text = $"Gen № : {core.Gen}";
-            core.GenerateNew();
+                    }
+                }
+
+                if (screen.InvokeRequired)
+                {
+                    screen.Invoke(new MethodInvoker(delegate { screen.Refresh(); }));
+                }
+
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate { Text = $"Gen № : {core.Gen}"; }));
+                }
+
+                core.GenerateNew();
+            }
         }
 
 
@@ -90,9 +95,6 @@ namespace Lifesiml
 
         private void screen_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!timer1.Enabled)
-                return; ;
-
             if (e.Button == MouseButtons.Left)
             {
                 var x = e.Location.X / res;
@@ -106,7 +108,10 @@ namespace Lifesiml
                 core.RemoveCell(x, y);
             }
 
-
+            if(screen.InvokeRequired)
+            {
+                screen.Invoke(new MethodInvoker(delegate { screen.Refresh(); }));
+            }
         }
 
        
