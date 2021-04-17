@@ -39,7 +39,7 @@ namespace Lifesiml
 
             setRes.Enabled = false; setDens.Enabled = false;
             res = (UInt16)setRes.Value;
-            core = new Core(row: screen.Height / res, col: screen.Width / res,(int)setDens.Value);
+            core = new Core(row: screen.Height / res, col: screen.Width / res, intensivity: (((int)setDens.Minimum + (int)setDens.Maximum - (int)setDens.Value))) ;
             Text = $"Gen № : {core.Gen}";
 
             screen.Image = new Bitmap(screen.Height, screen.Width);
@@ -135,7 +135,7 @@ namespace Lifesiml
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            speed = (ushort)Speed1.Value;
+            speed = (ushort)(Speed1.Minimum + Speed1.Maximum - Speed1.Value);
         }
     }
 }

@@ -134,7 +134,7 @@ namespace Lifesiml
             this.Speed1.Size = new System.Drawing.Size(120, 20);
             this.Speed1.TabIndex = 6;
             this.Speed1.Value = new decimal(new int[] {
-            10,
+            75,
             0,
             0,
             0});
@@ -142,7 +142,7 @@ namespace Lifesiml
             // 
             // stopButton
             // 
-            this.stopButton.Location = new System.Drawing.Point(31, 322);
+            this.stopButton.Location = new System.Drawing.Point(137, 324);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(75, 23);
             this.stopButton.TabIndex = 5;
@@ -152,7 +152,7 @@ namespace Lifesiml
             // 
             // runButton
             // 
-            this.runButton.Location = new System.Drawing.Point(30, 278);
+            this.runButton.Location = new System.Drawing.Point(56, 324);
             this.runButton.Name = "runButton";
             this.runButton.Size = new System.Drawing.Size(75, 23);
             this.runButton.TabIndex = 4;
@@ -163,6 +163,11 @@ namespace Lifesiml
             // setDens
             // 
             this.setDens.Location = new System.Drawing.Point(124, 23);
+            this.setDens.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.setDens.Minimum = new decimal(new int[] {
             2,
             0,
